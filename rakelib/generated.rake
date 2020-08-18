@@ -1,5 +1,5 @@
 namespace(:generated) {
-  generated = ['lib/ruby-c8'].collect { |dir|
+  generated = Dir['lib/*'].select { |x| File.directory?(x) }.collect { |dir|
     GeneratedFile.new { |t|
       t.name = "#{dir}.rb"
       t.requirements << FileList[File.join(dir, '*.rb')]

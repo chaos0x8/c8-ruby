@@ -4,7 +4,7 @@ require 'test/unit'
 require 'shoulda'
 require 'mocha'
 
-require_relative '../lib/ruby-c8/password'
+require_relative '../../lib/c8-ruby/password'
 
 module C8
   class TestPassword < Test::Unit::TestCase

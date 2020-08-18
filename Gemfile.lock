@@ -1,0 +1,23 @@
+PATH
+  remote: .
+  specs:
+    c8-ruby (0.0.0)
+    c8-yaml-format (0.0.0)
+      psych (~> 2.0)
+      word_wrap (~> 1.0, >= 1.0.0)
+
+GEM
+  remote: https://rubygems.org/
+  specs:
+    psych (2.2.4)
+    word_wrap (1.0.0)
+
+PLATFORMS
+  ruby
+
+DEPENDENCIES
+  c8-ruby!
+  c8-yaml-format!
+
+BUNDLED WITH
+   2.1.4

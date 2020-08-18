@@ -4,7 +4,7 @@ require 'test/unit'
 require 'shoulda'
 require 'mocha'
 
-require_relative '../lib/ruby-c8/pty'
+require_relative '../../lib/c8-ruby/pty'
 
 module C8
   class TestPty < Test::Unit::TestCase

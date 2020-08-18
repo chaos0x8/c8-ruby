@@ -1,0 +1,58 @@
+#!/usr/bin/env ruby
+
+require 'bundler'
+Bundler.setup(:default)
+
+require_relative '../lib/c8-yaml-format'
+
+require 'optionparser'
+require 'forwardable'
+
+class Application
+  extend Forwardable
+
+  def_delegators :@yamlFormat, :indentation, :indentation=,
+                               :line_width, :line_width=
+
+  def initialize
+    @yamlFormat = C8::YamlFormat.new
+  end
+
+  def exec *files
+    if $stdin.tty?
+      execFiles *files
+    else
+      execStream
+    end
+  end
+
+private
+  def execFiles *files
+    raise 'Not implemented yet'
+  end
+
+  def execStream
+    data = Psych.load($stdin.read)
+    yaml = @yamlFormat.pretty_generate data
+    $stdout.puts yaml
+  end
+end
+
+app = Application.new
+
+OptionParser.new { |op|
+  op.on('--indentation V', Integer, "changes indentation (default: #{app.indentation})" ) { |v|
+    app.indentation = v
+  }
+
+  op.on('--line_width V', Integer, "changes line width (default: #{app.line_width})") { |v|
+    app.line_width = v
+  }
+
+  op.on('--help') {
+    $stdout.puts op
+    exit 0
+  }
+}.parse!(ARGV)
+
+app.exec *ARGV
