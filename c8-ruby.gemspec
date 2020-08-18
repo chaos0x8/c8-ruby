@@ -5,6 +5,7 @@ Gem::Specification.new { |s|
   s.summary     = "#{s.name} library"
   s.description = "Ruby utility library"
   s.authors     = ["chaos0x8"]
-  s.files       = Dir['lib/c8-ruby.rb', 'lib/c8-ruby/*.rb']
+  s.files  = Dir['Gemfile', 'Gemfile.lock', '*.gemspec']
+  s.files += Dir['lib/c8-ruby.rb', 'lib/c8-ruby/*.rb']
 }
 
