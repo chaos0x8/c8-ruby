@@ -18,10 +18,10 @@ module C8
     end
 
   private
-    def wordWrap data, level: 0
+    def wordWrap data, prefixWidth: 0, level: 0
       if data.kind_of? Hash
         return data.collect { |key, value|
-          [key, wordWrap(value, level: level+1)]
+          [key, wordWrap(value, prefixWidth: key.size + 2, level: level+1)]
         }.to_h
       elsif data.kind_of? Array
         return data.collect { |value|
@@ -34,6 +34,8 @@ module C8
           if data.split("\n").any? { |x| x.size > width }
             return WordWrap::ww data, width, true
           end
+        elsif data.size > width - prefixWidth
+          return WordWrap::ww data, width - prefixWidth, true
         end
       end
 

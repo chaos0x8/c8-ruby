@@ -1,7 +1,7 @@
 Gem::Specification.new { |s|
   s.name = 'c8-yaml-format'
-  s.version = '0.0.1'
-  s.date = '2020-08-12'
+  s.version = '0.0.2'
+  s.date = '2020-08-13'
   s.summary = "#{s.name} library"
   s.description = 'Library for formatting yaml files'
   s.authors = ['chaos0x8']

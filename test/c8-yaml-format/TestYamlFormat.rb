@@ -149,6 +149,37 @@ module C8
           }
         }
       }
+
+      context('very long field name') {
+        setup {
+          @sut.line_width = 40
+          @sut.indentation = 4
+          longField = 'long_long_description'
+          shortLine = (['word'] * 4).join(' ')
+
+          @data = {
+            longField => shortLine,
+            'name' => 'Kevin',
+            'methods' => [
+              { 'name' => 'goo',
+                longField => shortLine,
+                'params' => [
+                  'a1' => { longField => shortLine },
+                  'a2' => { longField => shortLine }
+                ]},
+              { 'name' => 'bar',
+                longField => shortLine }
+            ]
+          }
+        }
+
+        should('word break too long text') {
+          result = @sut.pretty_generate(@data)
+          result.each_line(chomp: true) { |line|
+            assert_operator @sut.line_width, :>=, line.size
+          }
+        }
+      }
     }
   end
 end
