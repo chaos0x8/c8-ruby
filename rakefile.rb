@@ -11,8 +11,12 @@ Rake::TestTask.new { |t|
   t.deps = ['generated:default']
 }
 
+gemTasks = Dir['*.gemspec'].collect { |fn|
+  "#{File.basename(fn).chomp(File.extname(fn))}:default"
+}
+
 desc 'Builds all gems'
-task(:gem => ['c8-ruby:gem', 'c8-yaml-format:gem'])
+task(:gem => Names[gemTasks])
 
 desc 'Runs unit tests and creates gem file'
-task(:default => ['test', 'gem'])
+task(:default => Names['test', gemTasks])
